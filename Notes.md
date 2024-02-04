@@ -210,6 +210,227 @@ What get passed when we pass "reference" to other function?
 		c) To call another cosntructor from a constructor - this() call to default constructor OR
 			 this(para1,para2) - call to parametrised constructor
 
+**Data Types
+**
+
+
+There are 8 primitive/in-built data types:
+
+	boolean 1 bit 	(true/false) - Boolean
+	char	2 bytes - Because Java supports UTF(unicode) and multi-byte characters (e.g. chinese,japnese) - Character
+	
+	byte	1 byte		Byte
+	short	2 bytes		Short
+	int		4 bytes		Integer
+	long	8 bytes		Long
+	
+	float	4 bytes		Float	
+	double	8 bytes		Double
+
+
+How range is calculated?
+	e.g.
+	For short (2 bytes) -> 16 bits
+	1 bit - Reserved for sign
+	We can utilise 15 bits.
+	
+	Range for short -> - 2 ^ 15 to 2 ^ 15 - 1 (-2^n-1 to 2^n-1 - 1)
+
+
+
+Rules for Identifier:
+
+What is Identifier?
+	- variable name, function name, class name are considered as "identifier"
+
+Identifier can consist of alphabates (a-z, A-Z), digits(0-9), special symbol (underscore _ )
+First letter of identifier must be alphabate OR underscore (It can not be number)	
+
+Rule for variable and function name:
+- Start identifier name with small letter followed by first capital letter for each word.
+e.g. 
+int age = 20;
+getDetails() {}
+
+float empSalary; // variable name
+getEmpSalary(){}	 // function name
+	
+Rule for class name:
+- Class name should be starting with "capital" letter.
+	// class naming convention
+	class EmployeeDetails {}
+	class PersonAgeInformation {}
+
+Typecasting:
+
+There are 2 types
+	a) implicit type casting - When we assign small type to big type. It's allowed.
+	b) explicit type casting - Assigning big type data to small type is not directly possible and hence explict type casting
+		option is available.
+
+Example of implicit type-casting.
+	byte b = 20;
+	int x = b; // implicit type-casting 
+	
+Example of explicit type-casting	
+	long a = 10;
+	int b = (int)a; // long to int - Explict type-casting
+
+A-Z [65-90]
+a-z [97-122]
+0-9 [48-57]
+
+	
+	float -> double (promotion is allowed)
+	double -> float (demotion is NOT direclty allowed)
+
+int -> Integer 	(Auto boxing)
+Integer -> int 	(Auto unboxing)
+
+
+Integer important methods/propeties:
+Integer.MAX_VALUE
+Integer.MIN_VALUE
+
+Integer.toBinaryString(num)
+Integer.toHexString(num)
+Integer.toOctalString(num)
+Integer.reverse(num)
+
+Character wrapper class methods.
+    Character.isDigit(char ch)
+    Character.isLetter(char ch)
+    Character.isLowerCase(char ch)
+    Character.isUpperCase(char ch)
+	Character.toLowerCase(char ch)
+	Character.toUpperCase(char ch)
+    Character.getNumericValue(char ch)
+
+
+**Arrays:
+**
+
+	- Array is a collection of same type of elements.
+	- It is used when we have to store similar types of elements collectively.
+	- e.g.
+			String[] cities = {"Pune", "Mumbai", "Banglore", "Hyderabad"};
+			String[] bloodGroups = {"A+", "A-", "O+", "O-"};
+	- Array declartion syntax:
+			int[] arr = new int[5];
+			String s[] = new String[]; // Array symbol after variable is also allowed(NOT recommended)
+			String[] seasons = {"Summer", "Winter", "Rainy"};
+			
+	- Once array is created it's size can not be modified. (It is static size)
+	- To get length of an array, property "length" is used (e.g. arr.length)
+	- Array elements are accessed using "index"
+	- If we try to access array elements with invalid index then "ArrayIndexOutOfBoundsException" is thrown.
+	
+How to traverse an array?
+	
+	1) Normal for-loop
+	
+	   int[] arr = {10,20,30,40,50};
+	   
+	   for (int i=0; i<arr.length; i++) {
+	   	System.out.println(arr[i]);
+	   }
+
+	2) Using for-each loop
+	   
+	   String[] arr = {"Pune", "Mumbai", "Banglore", "Hyderabad"};
+	   
+	   for (String city : arr) {
+	   	System.out.println(city);
+	   }
+	 
+	   int[] data = {1,2,3,4,5};
+	   for(int d:data) {
+	   	System.out.println(d);
+	   }
+
+Is it possible to have an array where we can store any type of information?
+Yes. Using Object[]
+
+	e.g. Object[] arr = {1, "Abc", 90.3f};
+	
+How to create array for user-defined type?
+
+class Emp {
+ int id;
+ String name;
+ float salary;
+}
+
+	Emp[] arr = new Emp[5];
+	
+	Emp e1 = new Emp(11, "John", 10000);
+	arr[0] = e1; 
+
+
+
+
+	   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
