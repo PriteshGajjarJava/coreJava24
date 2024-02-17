@@ -5,6 +5,14 @@ public class FindMinMax {
     int min = findMin(a);
     System.out.println("Min: " + min + ", Max=" + max);
   }
+
+
+  static int[] getOddArray(int[] arr) { return new int[]{}; }
+  static int[] getEvenArray(int[] arr) {return new int[]{}; }
+
+  static int findLargestOddNumber(){ return 0;} // 19
+  static int  findLargestEventNumber() {return 0;}//20
+
   static int findMax(int[] arr) {
     int max = Integer.MIN_VALUE;
     for (int i = 0; i < arr.length; i++) {

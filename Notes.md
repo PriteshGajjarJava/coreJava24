@@ -367,7 +367,27 @@ class Emp {
 	arr[0] = e1; 
 
 
+https://github.com/PriteshGajjarJava/coreJava24
 
+
+	JVM/JRE 
+	ByteCode
+	Platform independent
+	main() function
+	class, object, encapsulation
+	IS-A relationship
+	HAS-A relationship
+	static function
+	instance function
+	constructor
+	stack v/s heap
+	reference, object
+	Data types
+	Arrays
+	
+	Array, String, Inheritance, Polymorphis, Exception Handling,
+		Multi-Threading,Collection
+	
 
 	   
 
