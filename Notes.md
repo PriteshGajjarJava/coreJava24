@@ -388,12 +388,89 @@ https://github.com/PriteshGajjarJava/coreJava24
 	Array, String, Inheritance, Polymorphis, Exception Handling,
 		Multi-Threading,Collection
 	
+**String:
+**	   
 
-	   
+- String is not a data type.
+- It is a class from "java.lang" package
+- String is used to represent multiple characters
+e.g.
+	String name = "Raj";
+	String city = "Pune";
+	
+- There are 2 ways of creating String.
+	1) Direct assignment
+			String city = "Pune"; // String Literal
+	2) Using constructor
+			String city = new String("Delhi");
+			
+String Literal Pool:
+- Strings created by assigning literals directly goes in special memory in heap area called as "String Literal Pool".
+
+	e.g.
+			String city1 = "Pune";
+			String city2 = "Pune";
+			
+		city1, city2 will point to same literal entry in literal pool. 
+	
+			String name1 = new String("Nitin");
+			String name2 = new String("Nitin");
+		
+		name1 and name2 will have dedicated memory allocation.
+
+String objects are "immutable":
+
+	- Using string literal pool, literals can be shared.
+	- String content can NOT be modified directly.
+	- Any changes to string content would lead to creation of new string and this is called as "String immutability".
+	
+e.g.
+		String s1 = "Pune";
+		String s2 = "Pune";
+		
+		s1 = s1.toUpperCase(); // New literal will be created for "PUNE"
+		
+		
+String Functions:
+
+
+Function name			String	content			How to use? 			Answer
+length						"Java"			 	s.length()					4
+
+toUpperCase()			    "Java"				s.toUpperCase()			JAVA
+toLowerCase()				"JAvA"				s.toLowerCase()			java
+
+charAt(index)				"Program"			s.charAt(3)				?
+
+indexOf(char)			"Programming"			s.indexOf('r')			?
+lastIndexOf(char)		"Programming"			s.lastIndexOf('m')		?
+indexOf(String)			"Programming"			s.indexOf("ram")		?
+
+contains(String)		"Programming"			s.contains("ram")		true
+startsWith(String)	 "Java version 8"			s.startsWith("Java")	true
+endsWith(String)	 "Good Luck."				s.endsWith("ck.")		true
+
+substring(start)	 "Good morning"				s.substring(5)			morning
+substring(start,end) "Good morning"				s.substring(5,9)		morn
+
+replace(char1,char2) "Good morning"				s.replace('o','#')		G##d m#rning
+
+toCharArray()		 "Hello"					char[] arr=s.toCharArray()	['H','e','l','l','o']
+
+trim()				 "   Hi! Hello    "			s.trim()				"Hi! Hello"	
 
 
 
+int i = 10;
+String s = String.valueOf(i); // "10"
 
+
+String s = "1890";
+int i = Integer.valueOf(s);		
+
+
+String str = "We are learning Java";
+String[] arr = str.split(" "); //["We", "are", "learning", "Java"]
 
 
 
