@@ -473,15 +473,37 @@ String str = "We are learning Java";
 String[] arr = str.split(" "); //["We", "are", "learning", "Java"]
 
 
+- StringBuffer and StringBuider are used when we have a string which changes frequently.
+- StringBuffer/StringBuilder are mutable. We can change content of string. (New object is not created here)
+- StringBuffer is synchronized, StringBuilder is not synchronized.
+	
+	e.g. StringBuffer str = new StringBuffer("Java");
+		 StringBuffer s = "test"; // ERROR - Direct literal can not be assigned to StringBuffer
 
 
+Var-Arg (Varialble Argument) List:
+	
+	- It is special type of argument in function declaration which is written using ... (3 dots). - Ellipse operator
+	- Var-arg List is used when we have to pass 0 to n values of same type as comma seperated values.
+	- Interally var-arg parameter gets converted into an array.
+	- We can traverse and access var-arg list parameters just like an array.
+
+	Rules:
+	- We can have at most one var-arg list
+	- It must be last parameter in function declaration
+	
+Alternative syntax of main() using var-arg
+	public static void main(String ...arg) {}
 
 
-
-
-
-
-
+Command Line Arguments:
+	
+	- When we run Java program, we can pass input to program usign comman line arguments.
+	- Generally enviornment related inforamtion like Port Number, OS, DB name can be passed using command line args.
+	- These arguments are collected in main() function.
+	- Type of command line args is always String[]
+	- Whatever we pass as command line argument, gets converted into String.
+	
 
 
 
