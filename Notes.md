@@ -504,28 +504,273 @@ Command Line Arguments:
 	- Type of command line args is always String[]
 	- Whatever we pass as command line argument, gets converted into String.
 	
+Inheritance:
+
+	- Inheritance is OOP concept using which we can achieve "Reusability".
+	- It is a relationship between two classes (Parent and child)
+	- "extends" keyword is used when one class inherit another class.
+	- Using inheritance, a child class can access properties and functions of parent classes.
+	- It represents "IS-A" relationship
+
+	Ex. of Inheritance
+	
+	1) 
+				Person
+				
+		Emp		Student		Doctor
+		
+
+	2) 
+		
+				Vehicle
+				
+	TwoWheeler	ThreeWheeler	FourWheeler
+	
+	3)
+	
+				OperatingSystem
+				
+				
+		Linux		MacOSx		Windows
+
+
+Types of inheritance:
+
+1) Single Level Inheritance
+
+		A
+		|
+		B
+
+2) Multi-Level inheritance
+
+		A
+		|
+		B
+		|
+		C
+3) Hierarchical Inheritance
+
+
+			A
+	
+	    B 		C
+    
+	D      E
+
+4) Multiple Inheritance
+
+	- Multiple inheritance means a child inheriting more than one parent.
+	- In Java, multiple inheritance is NOT possible with classes, however it is possible with "interfaces".
+	
+			A       B
+			    
+			   C
+			   
+			 class A{}
+			 class B{}
+			 class C extends A, B {} // ERROR
+
+			 
+		interface A {}
+		interface B {}
+		class C implements A, B {}  // VALID
+
+
+"extends" v/s "implements"
+
+
+								----> Parent
+							class			interface
+							
+		class			extends				implements	
+		
+		interface		NA					extends
+
+
+**"super" keyword:**
+
+"super" keyword is used to access following:
+	- A property of parent class
+	- A function of parent class
+	- A constructor of parent class
+	
+"super" always refers to parent class. *(super means uper)*
+
+To access self properties/functions we use "this" keyword.
+To access properties/functions of parent we use "super" keyword
+
+Example
+	
+		class A{
+			int x = 10;
+			void fun() {}
+		}
+		class B extends A {
+			int x = 20;
+			void fun() {}
+			
+			// To access self properties/functions
+			Sop(this.x);
+			this.fun();
+			
+			// To access parent properties/functions
+			Sop(super.x);
+			super.fun();
+		}
+
+Constructor calling using "super" keyword:
+
+	- A parent class constructor can be called using "super" keyword.
+	- super() -> Call to default constructor of parent class
+	  super(para1, para2) -> Call to "parameterised constructor" of parent class.
+	- Rules of calling parent class constructor:
+		1) You must be in child class constructor
+		2) Call to parent constructor can be given only from 1st line of child constructor
+	- First line of any constructor is always reserved.
+		If we dont' write super()/super(para) then JVM would add "super()" (call to default constructor of parent class)
 
 
 
 
+		class A{
+			A() {
+				super();
+				SOP("A");
+			}
+		}
+		class B extends A {
+			B() {
+				super();
+				SOP("B");
+			}
+		}
 
 
+**Polymorphism:
+**
+
+	- Polymorphism means "One name -> Many forms".
+	- It is one of the OOP concept.
+
+	e.g.
+	
+		int a = 2 + 10; // "+" is doing addtion of numbers
+		String s = "Good" + "Morning"; // "GoodMorning" -> String concat
+		
+	In above example "+" operator is used for two differnt purposes. 
+	This is good example of polymorphism concept. It is called as "Operator overloadig" (Which does NOT exists in java)
+
+	Java has 2 types of Polymorphism:
+	
+		1) Compile Time Polymorphism (Static Binding) 
+			Method Overloading is example of compile-time polymorphism.
+			Decision of which overloaded method to be called is taken as compile time.
+			
+		2) Run-Time Polymorphism (Dynamic Binding)
+			Method Overriding is example of run-time polymorphism.
+			Decision of which overloaded method to be called is taken as run time.
 
 
+**Method Overloading:
+**
+	
+	- It is compile-time polymorphism.
+	- Method overloading means - Writing multiple functions with same name, but with change in function parameters. Change in function 
+	  parameters can be in type/sequence/count.
+	  
+	 e.g.
+	 		class Calculator {
+				int add (int a, int b) {}
+				int add (int a, int b, int c) {}
+				float add(float a, float b) {}
+				String add(String a, String b){}
+				String add(int a, String b) {}
+				String add(String a, int b) {}
+			}
+			
+	In above example, add() method is overloaded.
+	
+	- Method overloading depends only on function arguments, it does NOT depends on return type.
+		e.g.
+				int   add(int a, int b) {}
+				float add(int x, int y) {} // ERROR: both function has int,int as arguments.
+				
+	- We can overload all types of methods (instance method, static methods, constructor)
+			
+**Method Overriding:
+**
 
+	- It is Run-Time polymorphism.
+	- Method overriding means a child class has an option of redefining parent class method in it's own way.
+	- In some cases, parent class method implementation may not be suitable for child class. In such cases, child class can 
+	  write same method name with different definition this is called as Method overriding.
+	  
+	ex.
+			class Electronics {
+				void start() {
+				  // Turn switch ON
+				}
+			}
+			class Fan extends Electronics {
+				void start() {
+				  super.start();
+				  // Use Regulator
+				}
+			}
 
-
-
-
-
-
-
-
-
-
-
-
-
+			class Vehicle {
+				reverse(){ }
+				accelerate() {}
+				applyBreak() {}
+			}
+			
+			class FourWheeler extends Vehicle {
+				reverse () {
+				  ...
+				}
+				accelerate() {
+				  ...
+				}
+			}
+	- It's NOT always mandatory for child class to override parent class method.
+	- If parent want to enforce child class to override it's method then parent will declare that method as "abstract" method.
+	- It's mandatory for child class to override abstract methods.
+	- Child class always has 3 choices:
+		- Do NOT override (Child is OK with parent class method logic)
+		- Use parent logic + own logic : Child can override in following way.
+				fun() {
+				  super.fun();
+				  ... // own logic
+				}
+		- Write complete new logic in child class.
+		
+	- Following are methods which can NOT be overridden.
+		1) final methods
+		2) static methods
+		3) private methods
+		4) constructor
+		
+	- Method is properly overridden if following two points are true.
+		1) Method signature in parent and child is same
+		2) Run-time polymorphism MUST exists between those methods.
+		
+	- While overrideing child class can increase the scope of function.
+		Order of access specififer is : private(Least friendly), default, protected, public(Most friendly)
+	
+	
+		if Parent class method is with "default" scope then child class has 3 options default/protected/public.
+		If parent class method is "public". Child class MUST override with "public" scope.
+		
+	- When we have "throws" in method signture, while overriding child class has 3 options.
+		// In parent class
+		public void f() throws ArrayIndexOutOfBoundsException {}
+		
+		// In child class
+		public void f() // Ignore throws
+		public void f() throws ArrayIndexOutOfBoundsException {} // keep as is
+		public void f() throws Exception // You can change exception class to parent class
+		
 
 
 
