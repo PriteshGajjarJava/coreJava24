@@ -771,26 +771,135 @@ Constructor calling using "super" keyword:
 		public void f() throws ArrayIndexOutOfBoundsException {} // keep as is
 		public void f() throws Exception // You can change exception class to parent class
 		
+**
+Runtime Polymorphism:**
+
+	- In case of method overriding, decision of which method (parent/child) to be called is taken at Runtime.
+	- Compiler compiles program by looking at left side of type(reference).
+	- At run-time right side object is considered.
+
+	e.g.
+		class A {}
+		class B extends A {}
+		
+		A obj = new A(); // For Compiler type is A, For Runtime type is A 
+		B obj = new B(); // For Compiler type is B, For Runtime type is B
+		A obj = new B(); // For Compiler type is A, For Runtime type is B - Ex of Upcasting
+
+	In Java, we can assign object of child class to parent reference. This concept is called as "Upcasting".
+	
+	Downcasting is not allowed.
+		B obj = new A(); // Error
+
+	
+"final" keyword:
+	
+	- final variable - Whose value can NOT be changed (constant)
+	- final method   - A method which can NOT be overridden
+	- final class    - A class which can NOT be inherited
+
+**Abstract class
+**
 
 
+- Abstract method: It is a method which is declared using "abstract" keyword.
+- Abstract method does NOT have deifinition and it ends with semicolon.
+- Its mandatory for child class to override abstract method. So using "abstract method" a parent class can force child class to override particular method.
+
+Abstract class:
+
+- We can declare abstract class using "abstract" keywrod.
+  e.g.
+  		abstract class A {}
+
+- Abstract class can consist of abstract methods. It's not mandatory to have abstract methods in that class.
+
+- Abstract class can NOT be instantiated(We can NOT create object of abstract class)
+
+- When a child class inherits an abstract class, child class MUST override all abstract methods from parent class.
+
+- If child class fails to override any of abstract methods from parent, then that child class also can be declared as abstract class.
+
+- Even if we can not create object of abstract class, still it can have constrcutor. Constructor of abstract class will be called when we create object of child class.
+
+- Abstract class can also have it's own properties(instance/static) which can be accessed using a child class.
 
 
+Interface:
+
+	- It's a type in Java declared using "interface" keyword.
+		e.g.
+		interface A {}
+		
+	- All variables of interface are by default "public static final"
+	
+	- All methods of interface are by defaute "public abstract"
+	
+	- As all methods of interface are abstract we don't have to use abstract keyword (it's optional)
+	
+	- Main purpose of an interface is to define a CONTRACT, which child class can implement.
+	
+	- A child class can inherite an interface usign "implements" keyword.
+	
+	- Multiple inheritance is possible with interfaces. Onc class can inherit more than one interfaces.
+		
+	  e.g.
+	  	interface A {}
+		interface B {}
+		class C implements A, B {}
+		
+	- Interface can NOT be instantiated. (we can not create object of interface)
+	- Interface does NOT have instance properties(only static properties are allowed)
+	- We can NOT have constructor in interface.
+ 
+**Package:
+**
 
 
+- Package helps to achieve "Modularity" OOP principal.
+- Using package we can orgnaise classes in better way. (logical/functional gropuing)
+- "package" is keyword used to declare package of a class.
+- This has to be 1st line in file.
+- Package declaration can consiste of single word(e.g. pkg1) or more words(e.g. com.pga.ui)
+- Using package we define boundry for class.
+
+ex.
+
+package com.pga.ui;
+class Calculator {
+
+}
+
+- Java also provide it's in-built classes in form of packages.
+	java.lang 	: Default package. All regular classes used frequently are in this package.(e.g. String, System, wrapper classes)
+	java.io 	: IO related classes
+	java.util	: Utility related classes
+	java.sql	: JDBC related classes (Database handling using Java)
+	java.net	: Networking related classes (e.g. Socket)
+	java.awt	: AWT UI
+	javax.swing	: Swing UI
 
 
+**Access Specifiers:
+**
 
+There are 4 access specifiers(scope) in Java.
 
+1) private   : Strict scope. Only accessed in same class
+2) default   : This is "package" level scope. This can be accessed in all classes from same package.
+3) protected : Protected things are accessed in same package. It can also be accessed outside package ONLY in case of Inheritance.
+4) public 	 : Accessed everywhere
 
+Question?
 
-
-
-
-
-
-
-
-
+- If i want to declare function which is usefuly only in current pacakge which scope i should give?
+  default
+  
+- I want to allow access to my class to all classes(inside/outside package) which scope i should give?
+  public
+  
+- What if i want to have a method which i am going to using in my class only, which scope i should give?
+  private
 
 
 
