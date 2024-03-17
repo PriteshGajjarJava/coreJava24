@@ -892,7 +892,7 @@ There are 4 access specifiers(scope) in Java.
 
 Question?
 
-- If i want to declare function which is usefuly only in current pacakge which scope i should give?
+- If i want to declare function which is useful only in current pacakge which scope i should give?
   default
   
 - I want to allow access to my class to all classes(inside/outside package) which scope i should give?
@@ -901,8 +901,149 @@ Question?
 - What if i want to have a method which i am going to using in my class only, which scope i should give?
   private
 
+Exception Handling:
 
+There are 2 types of errors.
 
+1) Compilation errors
+   e.g. Syntax error (semicolon missing, bracket missing, wrong function name etc)
+   
+2) Runtime errors
+   These errors occurs at runtime due to some programming mistake or user input.
+   
+Exception:
+	- Exception is runtime error which cause program to terminate abnormally.
+	- If exception occurs at runtime and if it's not handled then program is terminated.
+
+If there are 10 lines and exception occurs at 3rd line (and if it's not handled), program will be terminated and lines from 4-10 are not executed.
+
+How to handle Exceptions?
+
+Java provides try-catch-finally blocks to do exception handling.
+
+1) "try" block
+Syntax:
+
+	try {
+		// lines of code where there is possiblity of an exception
+	}
+	
+In try block we write lines where there is chance of an exception.
+Ideally we should keep minimal code in "try" block.
+
+2) "catch" block
+
+Syntax:
+	catch(<Exception-class> obj) {
+	 // Exception handling logic
+	}
+	
+"catch" block is an exception handler block which gets executed ONLY when exception occurs.
+We can write multiple catch blocks with try. If exception occurs, JVM would fine best matching catch block based on exception and only one catch block will be executed.
+
+Order of multiple catch block must be child and then later parent. (Parent at bottom)
+
+3) "finally" block
+Syntax:
+	 finally {
+	 	// Code which you want to execute in both scenarion success/failure.
+	 }
+With try-catch pair we can add at most one "finally" block.(It's optional)
+"finally" block gets executed in both failure/success scenarios.
+Generally logic of cleanup is written in "finally" block. e.g Closing DB connection, Closing File, Closing socket etc.
+
+Two conditions where "finally" will NOT be executed:
+1) If try block is not hit
+2) If it encounters System.exit(0) before reaching finally block.
+
+Possible combinations of try-catch-finally:
+
+1) try-catch
+2) try-multiple catch blocks
+3) try-catch-finally
+4) try-multiple catch - finally
+5) try-finally
+
+Types of Exception:
+
+- Checked Exception
+- Unchecked exception
+
+Checked Exception:
+ - More critical
+ - Mandatory to handle. Compiler enforces.
+ - Parent class is "Exception"
+ - ex.
+ 	SQLException, FileNotFoundException, IOException, ServletException etc.
+	
+UnChecked Exceptions:
+  - Less Critical
+  - Not mandatory to handle. Compiler doesn't enforce.
+  - Parent is "RuntimeException"
+  - ex. 
+  		ArithmeticException, NullPointerException, ArrayIndexOutOfBoundsException, NumberFormatException
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//Option 2 of handling chekced exception => Ignoring Checked Exception by writing "throws" in signature
+// Don't use try-catch instead write main() as below
+// public static void main(String[] args) throws IOException
+
+"throws" keyword:
+
+	- "throws" keyword is used with method signature.
+	- Syntax: throws <Exception1>, <Exception2>...
+	e.g.
+			public void readLine() throws IOException
+			public void fun() throws SQLException, IOException {}
+	- Exception used with "throws" should be Checked exception
+	- Using "throws" keyword in method signature, we are telling outside world that there is a possiblity of critical exception
+	coming from my function.
+		e.g.
+				void fun() throws SQLException {}
+		With this we are telling caller of fun() that there is possiblity of SQLException. 
+	- Caller who callse function with 'throws' has 2 options:
+		1) Handle critical exception using try-catch
+		2) Ignore that critical exception by declaring "throws" in caller function.
+	- Generally in library function which are going to be used by others, we should use "throws" keyword.
+		e.g
+				boolean validateAge() throws AgeInvalidException {}
+				boolean validateATMPin() throws PINInvalidException {}
+
+"throw" keyword:
+
+	- "throw" keyword is used to throw an exception.
+	- Syntax
+		throw new <Exception-class>();
+		e.g.
+			throw new AgeInvalidException();//explicitly throwing an exception
+	- Generally used with user-defined exceptions
+	
+	
+	
+	e.g.
+	
+	boolean validateAge(int age) throws AgeInvalidException {
+		if (age < 1 || age >  100) {
+			throw new AgeInvalidException();
+		}
+		return true;
+	}
+
+Exception classes hierarchy 
+User DefinedException
+ 
 
 
 
@@ -919,4 +1060,11 @@ Question?
 	
 	
 	
-	
+
+
+
+
+
+
+
+
