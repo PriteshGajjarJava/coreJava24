@@ -983,19 +983,6 @@ UnChecked Exceptions:
   - ex. 
   		ArithmeticException, NullPointerException, ArrayIndexOutOfBoundsException, NumberFormatException
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 //Option 2 of handling chekced exception => Ignoring Checked Exception by writing "throws" in signature
 // Don't use try-catch instead write main() as below
 // public static void main(String[] args) throws IOException
@@ -1044,6 +1031,213 @@ UnChecked Exceptions:
 Exception classes hierarchy 
 User DefinedException
  
+**Multi-Threading:
+**
+
+- Program: It's an application which is stored on secondary device (e.g. HDD).
+- Program consist of set of instructions.
+- Process - When we execute program OS creates process for it.
+- Process gets loaded in RAM(Primary memory)
+- CPU executes process instruction from RAM one by one.
+- Execution speed of CPU is very fast (e.g. thousands of instructions in 1sec)
+- As CPU execution speed is high, we feel that mulitple processes are running in parellel.
+
+
+Threading:
+
+- By default every process has one thread called as "main" thread.
+- If you have tasks inside process which needs to be executed sequentially then one thread is enough.
+- If we have process which has mutilpe tasks which can run simultenously(in parellel) then threading is useful.
+
+Thread:
+
+- It's a lightweight process.
+- It is created from process.
+- It shares memory(other resources) from parent process
+- Every thread we create has dedicated task to perform. Once given task is finished, thread is dead.
+
+Ex. of multi-threading:
+Browser is multi-threaded application where it can have multiple threads to perform independent tasks as below.
+
+"main" thread - Default thread
+"browsing" therad - It will manage all tasks related to browsing
+"Printing" thread - It will manage all tasks realted to printing
+"Streaming" thread - It will manage all tasks realted to streaming
+"Downloading" therad - It will manage all tasks realted to downloading
+so on....
+
+OS gives chance to process to execute, however if processes has threads then one of the thread get chance.
+
+If two tasks are dependent on each other there we do NOT need threading.
+If two tasks can run independently in parellel then we should think of threading.
+
+**How to create Thread in Java?
+**
+
+There are 2 ways to create threads in java.
+1) By extending "Thread" class
+2) By implementing "Runnable" interface
+
+These options are given considering limitation of "multiple inheritance" in Java.
+
+In both options we have to override "public void run()" method.
+Logic of thread (what to execute) is written inside run() method.
+
+To start thread we call "start()" method from "Thread" class.
+start() method takes care of all low level tasks (memory allocation, stack creation etc).
+
+run() method is called by start() method once thread is created.
+We should NOT call run() by ourselves, because it won't create new thread.
+
+Relation between "Thread" and "Runnable":
+
+- Runnable is an interface
+- Thread is a class which inherits Runnable interface
+- run() method belongs to Runnable interface
+- start() method belongs to Thread class
+
+Hierarchy:
+				
+						Object			Runnable
+						
+					
+					
+					Thread				
+
+
+
+
+					  PrintingThread			StreamingThread
+
+
+**Inter-Thread communication:
+**
+
+In multi-threading we can have situation where communication between thread is needed. 
+Communication between threads is called as "Inter-Thread communication".
+
+There are 2 ways to achieve inter-thread communication:
+a) join() method
+b) wait(), notify()/notifyAll()
+
+
+join() method:
+ 
+- This is method from "Thread" class.
+- With join() current thread waits for complete execution of thread on which join() is called. e.g. 
+  If "a" is current thread and we call "b.join()" => a will wait for complete execution of thread b.
+- Disadvantage of this option is -> Current thread hast to wait for COMPLETE execution of another thread.
+
+
+wait()/notify()/notifyAll():
+
+- These methods are from "Object" class.
+- wait() - notify() methods are generally used in producer-consumer problem
+- In this case, waiting thread doesn't require to wait for complete execution of another thread, instead waiting thread continues the execution immediately after other thread notifies.
+- Waiting thread calls wait() method on an object,
+  notifying thread calls notify() method on same object.
+- If multiple threads are waiting on same object, then notifyAll() can be used.
+These methods should be called in "synchronized" block.
+
+	synchronized(obj) {
+		try {
+			obj.wait();
+		}catch(InterruptedException e) {}
+	}
+	
+	synchronized(obj) {
+		obj.notify();
+	}
+Both methods need to be called on SAME object.
+
+How to create Annonymous thread in Java?
+
+     // new Thread(new Runnable(){}).start();
+
+      new Thread(new Runnable() {
+        public void run() {
+          for (int i=1; i<=100;i++) {
+            System.out.println("Printing " + i + "%");
+          }
+        }
+      }).start();
+
+**Synchronization:
+**
+
+
+- There are two types of operations - READ and WRITE
+- In multi-threading it can happen that multiple threads are executing critical operation at the same time.
+- Ex. In banking application, we can have multiple transaction threads performing critical operations like Withdrawl, Deposit on same/differnt types of account.
+- To perfrom 5 operations at a time Banking app will create 5 transaction threads.
+- If all 5 threads are working on different account then there is no problem in exeucting code simultenously.
+- Problem comes when 2 threads doing critical operation on same object.
+
+- We need thread-safety when multiple thread executes method from our class via same object.
+- We use "synchronization" to achieve thread-safety.
+
+- Synchornization is solution to achieve thread safety, with that Java will NOT allow multiple threads to execute critical operation on SAME object.
+
+"synchronized":
+
+- With "synchronized" keyword on method we can make entire method as thread-safe.
+  e.g. synchronized void deposite() {}
+  
+- With "synchrnoized block" we can make particular block as thread-safe.
+  e.g.
+  		void criticalOperation() {
+			....
+			....
+			
+			syncrhonized(obj) {
+			  // Actual critical task
+			}
+			...
+			...
+		}
+
+- Generally we make Write operations as synchronized. There is no need to make read operaiton as synchronized, because no harm in calling read operation at a time.
+
+**Object and class level locking:
+**
+
+- To enter into instance synchronized method JVM applies lock on object.
+- To enter into static synchronized method JVM applied lock on a class.
+- There is NO relation between object level lock and class level lock.
+- Lock is applied only for synchrnoized methods.
+- If lock is applied on an object (e.g. account1), then any other thread want to do critical operation on same account1 will be blocked. Another thread will go in waiting queue. Once current thread's critical operation is over, thread2 will get a chance.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
